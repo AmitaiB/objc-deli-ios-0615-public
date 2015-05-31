@@ -15,7 +15,34 @@
     // Override point for customization after application launch.
     return YES;
 }
-							
+
+- (NSMutableArray *)takeANumberWithDeliLine:(NSMutableArray*)deliLine Name:(NSString*)newCustomerName {
+    [deliLine addObject:newCustomerName];
+    NSLog(@"%@ is number %lu in line!", newCustomerName, (unsigned long)[deliLine count]);
+    return deliLine;
+}
+
+- (NSMutableArray *)nowServingWithDeliLine:(NSMutableArray*)deliLine {
+    [deliLine removeObjectAtIndex:0];
+    if (deliLine[0]) {
+        NSLog(@"%@, you're next!", deliLine[0]);
+        return deliLine;
+    } else {
+        NSLog(@"There is nobody waiting to be served!");
+        return nil;
+    }
+    
+}
+
+- (NSString *)deliLine:(NSMutableArray*)deliLine {
+    if ([deliLine count] >= 1) {
+        return [deliLine description];
+    } else {
+        return @"The line is currently empty.";
+    }
+}
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
