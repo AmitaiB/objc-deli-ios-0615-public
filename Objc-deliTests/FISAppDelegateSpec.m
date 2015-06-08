@@ -47,7 +47,7 @@ describe(@"FISAppDelegate", ^{
         });
 
         it(@"Should return empty array for empty deli", ^{
-            expect([delegate nowServingWithDeliLine:deliLine]).to.equal(@[]);
+            expect([delegate nowServingWithDeliLine:deliLine]).to.equal(@[]); //but it's a NSMutableArray!
         });
     });
 

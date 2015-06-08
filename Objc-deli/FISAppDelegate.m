@@ -28,17 +28,23 @@
         NSLog(@"%@, you're next!", deliLine[0]);
         return deliLine;
     } else {
-        NSLog(@"There is nobody waiting to be served!");
-        return nil;
+        NSLog(@"The line is empty");
+        return @[];
     }
     
 }
 
 - (NSString *)deliLine:(NSMutableArray*)deliLine {
     if ([deliLine count] >= 1) {
-        return [deliLine description];
+        for (NSInteger i = 0; i < [deliLine count]; i++) {
+            NSMutableString *tempString = deliLine[i];
+            tempString = [[tempString stringByTrimmingCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]]mutableCopy];
+            tempString = [NSString stringWithFormat: (@"%ul. %@", i, tempString)];
+            deliLine[i] = [NSString stringWithFormat:(@"%@", tempString)];
+        }
+                           return [NSString stringWithFormat:(@"The line is currently %@",[deliLine description])];
     } else {
-        return @"The line is currently empty.";
+        return @"The line is empty";
     }
 }
 
