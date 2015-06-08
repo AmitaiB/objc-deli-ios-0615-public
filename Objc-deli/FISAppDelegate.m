@@ -35,14 +35,20 @@
 }
 
 - (NSString *)deliLine:(NSMutableArray*)deliLine {
+    NSMutableString *outputLine = [[NSMutableString alloc] init];
     if ([deliLine count] >= 1) {
-        for (NSInteger i = 0; i < [deliLine count]; i++) {
-            NSMutableString *tempString = deliLine[i];
-            tempString = [[tempString stringByTrimmingCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]]mutableCopy];
-            tempString = [NSString stringWithFormat: (@"%ul. %@", i, tempString)];
-            deliLine[i] = [NSString stringWithFormat:(@"%@", tempString)];
-        }
-                           return [NSString stringWithFormat:(@"The line is currently %@",[deliLine description])];
+
+        
+        //        for (NSInteger i = 0; i < [deliLine count]; i++) {
+//            [outputLine appendString:[NSString stringWithFormat:(@"%d. %@", i, deliLine[i])]];
+//        }
+//
+////            NSMutableString *tempString = deliLine[i];
+//            tempString = [[tempString stringByTrimmingCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]]mutableCopy];
+//            tempString = [NSString stringWithFormat: (@"%ul. %@", i, tempString)];
+//            deliLine[i] = [NSString stringWithFormat:(@"%@", tempString)];
+//                           return [NSString stringWithFormat:(@"The line is currently %@",[deliLine description])];
+        return outputLine;
     } else {
         return @"The line is empty";
     }
