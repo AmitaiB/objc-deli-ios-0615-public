@@ -34,11 +34,16 @@
     
 }
 
+//@"The line is currently: 1. Ada 2. Al"
 - (NSString *)deliLine:(NSMutableArray*)deliLine {
-    if ([deliLine count] >= 1) {
-        return [deliLine description];
+    if ([deliLine count]) {
+        NSMutableString *outputDeliLine = [NSMutableString stringWithString:@"The line is currently:"];
+        for (NSInteger i = 0; i < [deliLine count]; i++) {
+            [outputDeliLine appendFormat:(@" %ul. %@", i, deliLine[i])];
+        }
+        return [outputDeliLine copy];
     } else {
-        return @"The line is currently empty.";
+        return @"The line is empty";
     }
 }
 
