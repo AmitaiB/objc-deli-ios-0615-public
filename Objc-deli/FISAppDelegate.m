@@ -23,37 +23,28 @@
 }
 
 - (NSMutableArray *)nowServingWithDeliLine:(NSMutableArray*)deliLine {
-    [deliLine removeObjectAtIndex:0];
-    if (deliLine[0]) {
-        NSLog(@"%@, you're next!", deliLine[0]);
-        return deliLine;
-    } else {
+    if ([deliLine count] == 0) {
         NSLog(@"The line is empty");
         return [@[]mutableCopy];
+    } else {
+        NSLog(@"%@, you're next!", deliLine[0]);
+        [deliLine removeObjectAtIndex:0];
+        return deliLine;
     }
     
 }
 
+//@"The line is currently: 1. Ada 2. Al"
 - (NSString *)deliLine:(NSMutableArray*)deliLine {
-    NSMutableString *outputLine = [[NSMutableString alloc] init];
-    if ([deliLine count] >= 1) {
-        deliLine enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSNumber *atIdx = [NSNumber numberWithInteger:idx];
-            [outputLine appendString:[NSString stringWithFormat:(@"%@. ", atIdx)]];
-            [outputLine appendString:obj];
+    if ([deliLine count]) {
+        NSMutableString *outputDeliLine = [NSMutableString stringWithString:@"The line is currently:"];
+        for (NSInteger i = 0; i < [deliLine count]; i++) {
+            //strinDex;
+            NSNumber *idxPlus1 = [NSNumber numberWithInteger:(i + 1)];
+//           [outputDeliLine appendString:(@" %@. %@", [idxPlus1 stringValue])];
+            [outputDeliLine appendFormat:@" %@. %@", [idxPlus1 stringValue], deliLine[i]];
         }
-
-        
-        //        for (NSInteger i = 0; i < [deliLine count]; i++) {
-//            [outputLine appendString:[NSString stringWithFormat:(@"%d. %@", i, deliLine[i])]];
-//        }
-//
-////            NSMutableString *tempString = deliLine[i];
-//            tempString = [[tempString stringByTrimmingCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]]mutableCopy];
-//            tempString = [NSString stringWithFormat: (@"%ul. %@", i, tempString)];
-//            deliLine[i] = [NSString stringWithFormat:(@"%@", tempString)];
-//                           return [NSString stringWithFormat:(@"The line is currently %@",[deliLine description])];
-        return outputLine;
+        return [outputDeliLine copy];
     } else {
         return @"The line is empty";
     }
