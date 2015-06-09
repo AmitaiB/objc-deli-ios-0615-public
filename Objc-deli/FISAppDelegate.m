@@ -23,13 +23,13 @@
 }
 
 - (NSMutableArray *)nowServingWithDeliLine:(NSMutableArray*)deliLine {
-    [deliLine removeObjectAtIndex:0];
-    if (deliLine[0]) {
-        NSLog(@"%@, you're next!", deliLine[0]);
-        return deliLine;
+    if ([deliLine count] == 0) {
+        NSLog(@"The line is empty");
+        return [@[]mutableCopy];
     } else {
-        NSLog(@"There is nobody waiting to be served!");
-        return nil;
+        NSLog(@"%@, you're next!", deliLine[0]);
+        [deliLine removeObjectAtIndex:0];
+        return deliLine;
     }
     
 }
@@ -39,7 +39,10 @@
     if ([deliLine count]) {
         NSMutableString *outputDeliLine = [NSMutableString stringWithString:@"The line is currently:"];
         for (NSInteger i = 0; i < [deliLine count]; i++) {
-            [outputDeliLine appendFormat:(@" %ul. %@", i, deliLine[i])];
+            //strinDex;
+            NSNumber *idxPlus1 = [NSNumber numberWithInteger:(i + 1)];
+//           [outputDeliLine appendString:(@" %@. %@", [idxPlus1 stringValue])];
+            [outputDeliLine appendFormat:@" %@. %@", [idxPlus1 stringValue], deliLine[i]];
         }
         return [outputDeliLine copy];
     } else {
