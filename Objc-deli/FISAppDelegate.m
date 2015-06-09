@@ -29,7 +29,7 @@
         return deliLine;
     } else {
         NSLog(@"The line is empty");
-        return @[];
+        return [@[]mutableCopy];
     }
     
 }
@@ -37,6 +37,11 @@
 - (NSString *)deliLine:(NSMutableArray*)deliLine {
     NSMutableString *outputLine = [[NSMutableString alloc] init];
     if ([deliLine count] >= 1) {
+        deliLine enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSNumber *atIdx = [NSNumber numberWithInteger:idx];
+            [outputLine appendString:[NSString stringWithFormat:(@"%@. ", atIdx)]];
+            [outputLine appendString:obj];
+        }
 
         
         //        for (NSInteger i = 0; i < [deliLine count]; i++) {
